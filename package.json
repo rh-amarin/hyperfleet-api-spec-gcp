@@ -8,7 +8,7 @@
     "build:swagger": "./build-schema.sh gcp --swagger"
   },
   "dependencies": {
-    "hyperfleet": "file:../hyperfleet-api-spec/aspec/remove-gcp-from-core/hyperfleet-0.1.0.tgz"
+    "hyperfleet": "github:rh-amarin/hyperfleet-api-spec#remove-gcp-from-core"
   },
   "devDependencies": {
     "@stoplight/spectral-cli": "6.15.1",
@@ -16,8 +16,7 @@
     "@typespec/http": "^1.6.0",
     "@typespec/openapi": "^1.6.0",
     "@typespec/openapi3": "^1.6.0",
-    "@typespec/rest": "^0.81.0",
-    "@typespec/versioning": "^0.81.0",
-    "api-spec-converter": "^2.12.0"
+    "@typespec/rest": "^0.82.0",
+    "@typespec/versioning": "^0.82.0"
   }
 }
