@@ -26,14 +26,14 @@ jobs:
 
       - name: Build GCP schemas
         run: |
-          ./build-schema.sh gcp
-          ./build-schema.sh gcp --swagger
+          ./build-schema.sh
+          ./build-schema.sh --swagger
 
       - name: Check schema consistency
         run: |
           if ! git diff --exit-code schemas/; then
             echo "Committed schemas are out of sync with TypeSpec sources."
-            echo "Run './build-schema.sh gcp --swagger' and commit the results."
+            echo "Run './build-schema.sh --swagger' and commit the results."
             exit 1
           fi
 

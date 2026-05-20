@@ -52,8 +52,8 @@ jobs:
       - name: Build GCP schemas
         if: steps.check_tag.outputs.skip == 'false'
         run: |
-          ./build-schema.sh gcp
-          ./build-schema.sh gcp --swagger
+          ./build-schema.sh
+          ./build-schema.sh --swagger
 
       - name: Prepare release assets
         if: steps.check_tag.outputs.skip == 'false'
