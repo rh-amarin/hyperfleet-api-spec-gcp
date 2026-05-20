@@ -7,6 +7,9 @@
     "build": "./build-schema.sh gcp",
     "build:swagger": "./build-schema.sh gcp --swagger"
   },
+  "dependencies": {
+    "hyperfleet": "file:../hyperfleet-api-spec/aspec/remove-gcp-from-core/hyperfleet-0.1.0.tgz"
+  },
   "devDependencies": {
     "@stoplight/spectral-cli": "6.15.1",
     "@typespec/compiler": "^1.6.0",

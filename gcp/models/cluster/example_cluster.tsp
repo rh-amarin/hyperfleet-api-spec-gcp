@@ -1,6 +1,6 @@
 import "./model.tsp";
-import "../../../api-spec/shared/models/clusters/model.tsp";
-import "../../../api-spec/shared/models/common/model.tsp";
+import "hyperfleet/shared/models/clusters/model.tsp";
+import "hyperfleet/shared/models/common/model.tsp";
 
 const exampleCluster: Cluster = #{
   kind: "Cluster",

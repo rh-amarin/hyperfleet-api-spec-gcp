@@ -11,9 +11,9 @@ import "./models/nodepool/example_nodepool.tsp";
 import "./models/nodepool/example_post.tsp";
 import "./models/nodepool/example_patch.tsp";
 
-import "../api-spec/shared/services/clusters.tsp";
-import "../api-spec/shared/services/statuses.tsp";
-import "../api-spec/shared/services/nodepools.tsp";
+import "hyperfleet/shared/services/clusters.tsp";
+import "hyperfleet/shared/services/statuses.tsp";
+import "hyperfleet/shared/services/nodepools.tsp";
 
 using Http;
 using OpenAPI;

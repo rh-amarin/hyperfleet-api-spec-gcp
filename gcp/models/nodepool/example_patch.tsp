@@ -1,5 +1,5 @@
 import "./model.tsp";
-import "../../../api-spec/shared/models/nodepools/model.tsp";
+import "hyperfleet/shared/models/nodepools/model.tsp";
 
 const exampleNodePoolPatchRequest: NodePoolPatchRequest = #{
   spec: #{

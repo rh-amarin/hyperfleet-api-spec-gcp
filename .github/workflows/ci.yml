@@ -16,14 +16,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v6
 
-      - name: Initialize api-spec submodule (shared/ only)
-        run: |
-          git submodule init api-spec
-          git config -f .git/modules/api-spec/config core.sparseCheckout true
-          mkdir -p .git/modules/api-spec/info
-          echo "shared/" > .git/modules/api-spec/info/sparse-checkout
-          git submodule update api-spec
-
       - name: Setup Node.js
         uses: actions/setup-node@v6
         with:

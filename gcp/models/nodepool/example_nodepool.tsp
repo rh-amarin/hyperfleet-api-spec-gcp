@@ -1,6 +1,6 @@
 import "./model.tsp";
-import "../../../api-spec/shared/models/nodepools/model.tsp";
-import "../../../api-spec/shared/models/common/model.tsp";
+import "hyperfleet/shared/models/nodepools/model.tsp";
+import "hyperfleet/shared/models/common/model.tsp";
 
 const exampleNodePool: NodePool = #{
   kind: "NodePool",

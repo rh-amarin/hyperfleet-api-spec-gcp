@@ -1,5 +1,5 @@
 import "./model.tsp";
-import "../../../api-spec/shared/models/clusters/model.tsp";
+import "hyperfleet/shared/models/clusters/model.tsp";
 
 const exampleClusterPatchRequest: ClusterPatchRequest = #{
   spec: #{

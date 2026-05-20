@@ -1,5 +1,5 @@
 import "./model.tsp";
-import "../../../api-spec/shared/models/nodepools/model.tsp";
+import "hyperfleet/shared/models/nodepools/model.tsp";
 
 const exampleNodePoolCreateRequest: NodePoolCreateRequest = #{
   name: "worker-pool-1",
