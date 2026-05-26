@@ -473,7 +473,7 @@ paths:
         - Clusters
       security:
         - BearerAuth: []
-    patch:
+    post:
       operationId: patchClusterById
       summary: Patch cluster by ID
       description: Patch a specific cluster by ID
@@ -840,7 +840,7 @@ paths:
         - NodePools
       security:
         - BearerAuth: []
-    patch:
+    post:
       operationId: patchNodePoolById
       summary: Patch nodepool by ID
       description: Patch a specific nodepool within a cluster
@@ -1082,7 +1082,7 @@ paths:
         - Resources
       security:
         - BearerAuth: []
-    patch:
+    post:
       operationId: patchResourceById
       summary: Patch resource by ID
       description: Patch a resource by ID. Supports partial updates to spec, labels, and references.
@@ -1582,7 +1582,7 @@ components:
       type: object
       properties:
         spec:
-          $ref: '#/components/schemas/ChannelSpecUpdate'
+          $ref: '#/components/schemas/ChannelSpec'
         labels:
           type: object
           additionalProperties:
@@ -1600,15 +1600,6 @@ components:
       required:
         - is_default
         - enabled_regex
-      properties:
-        is_default:
-          type: boolean
-          description: Whether this is the default channel for new clusters
-        enabled_regex:
-          type: string
-          description: Regex pattern for matching enabled version strings
-    ChannelSpecUpdate:
-      type: object
       properties:
         is_default:
           type: boolean
@@ -1837,7 +1828,7 @@ components:
       type: object
       properties:
         spec:
-          $ref: '#/components/schemas/ClusterSpecUpdate'
+          $ref: '#/components/schemas/ClusterSpec'
         labels:
           type: object
           additionalProperties:
@@ -1892,15 +1883,6 @@ components:
             - gcp
         gcp:
           $ref: '#/components/schemas/ClusterPlatform'
-    ClusterPlatformSpecUpdate:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-            - gcp
-        gcp:
-          $ref: '#/components/schemas/ClusterPlatform'
     ClusterSpec:
       type: object
       required:
@@ -1910,19 +1892,6 @@ components:
           type: string
         platform:
           $ref: '#/components/schemas/ClusterPlatformSpec'
-        release:
-          $ref: '#/components/schemas/ReleaseSpec'
-        networking:
-          $ref: '#/components/schemas/NetworkingSpec'
-        dns:
-          $ref: '#/components/schemas/DNSSpec'
-    ClusterSpecUpdate:
-      type: object
-      properties:
-        infraID:
-          type: string
-        platform:
-          $ref: '#/components/schemas/ClusterPlatformSpecUpdate'
         release:
           $ref: '#/components/schemas/ReleaseSpec'
         networking:
@@ -2306,7 +2275,7 @@ components:
       type: object
       properties:
         spec:
-          $ref: '#/components/schemas/NodePoolSpecUpdate'
+          $ref: '#/components/schemas/NodePoolSpec'
         labels:
           type: object
           additionalProperties:
@@ -2380,15 +2349,6 @@ components:
             - gcp
         gcp:
           $ref: '#/components/schemas/NodePoolPlatform'
-    NodePoolPlatformSpecUpdate:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-            - gcp
-        gcp:
-          $ref: '#/components/schemas/NodePoolPlatform'
     NodePoolSpec:
       type: object
       required:
@@ -2396,16 +2356,6 @@ components:
       properties:
         platform:
           $ref: '#/components/schemas/NodePoolPlatformSpec'
-        nodeCount:
-          type: integer
-          minimum: 0
-        autoscaling:
-          $ref: '#/components/schemas/AutoscalingSpec'
-    NodePoolSpecUpdate:
-      type: object
-      properties:
-        platform:
-          $ref: '#/components/schemas/NodePoolPlatformSpecUpdate'
         nodeCount:
           type: integer
           minimum: 0
@@ -2899,7 +2849,7 @@ components:
       type: object
       properties:
         spec:
-          $ref: '#/components/schemas/VersionSpecUpdate'
+          $ref: '#/components/schemas/VersionSpec'
         labels:
           type: object
           additionalProperties:
@@ -2921,25 +2871,6 @@ components:
         - enabled
         - is_default
         - release_image
-      properties:
-        raw_version:
-          type: string
-          description: Raw version string (e.g., "4.17.12")
-        enabled:
-          type: boolean
-          description: Whether this version is enabled for provisioning
-        is_default:
-          type: boolean
-          description: Whether this is the default version for its channel
-        release_image:
-          type: string
-          description: Container image reference for the release
-        end_of_life_time:
-          type: string
-          format: date-time
-          description: When this version reaches end of life
-    VersionSpecUpdate:
-      type: object
       properties:
         raw_version:
           type: string

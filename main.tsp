@@ -10,10 +10,15 @@ import "./models/nodepool/model.tsp";
 import "./models/nodepool/example_nodepool.tsp";
 import "./models/nodepool/example_post.tsp";
 import "./models/nodepool/example_patch.tsp";
+import "./models/channel/model.tsp";
+import "./models/version/model.tsp";
 
 import "hyperfleet/shared/services/clusters.tsp";
 import "hyperfleet/shared/services/statuses.tsp";
 import "hyperfleet/shared/services/nodepools.tsp";
+import "hyperfleet/shared/services/resources.tsp";
+import "./services/channels.tsp";
+import "./services/versions.tsp";
 
 using Http;
 using OpenAPI;
@@ -28,7 +33,7 @@ using OpenAPI;
  */
 @service(#{ title: "HyperFleet API" })
 @info(#{
-  version: "1.0.15",
+  version: "1.0.17",
   contact: #{
     name: "HyperFleet Team",
     url: "https://github.com/openshift-hyperfleet",

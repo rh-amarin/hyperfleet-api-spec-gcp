@@ -57,7 +57,7 @@ interface Channels {
    * Patches a channel by ID. Supports partial updates to spec and labels.
    */
   @route("/{channel_id}")
-  @patch(#{implicitOptionality: true})
+  @patch
   @summary("Patch channel by ID")
   @operationId("patchChannelById")
   patchChannelById(

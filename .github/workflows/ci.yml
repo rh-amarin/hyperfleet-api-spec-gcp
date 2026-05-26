@@ -19,21 +19,19 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
-          node-version: '20'
+          node-version: '22'
 
       - name: Install dependencies
         run: npm ci
 
       - name: Build GCP schemas
-        run: |
-          ./build-schema.sh
-          ./build-schema.sh --swagger
+        run: ./build-schema.sh
 
       - name: Check schema consistency
         run: |
           if ! git diff --exit-code schemas/; then
             echo "Committed schemas are out of sync with TypeSpec sources."
-            echo "Run './build-schema.sh --swagger' and commit the results."
+            echo "Run './build-schema.sh' and commit the results."
             exit 1
           fi
 

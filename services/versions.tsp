@@ -62,7 +62,7 @@ interface Versions {
    * Patch a version by ID. Supports partial updates to spec and labels.
    */
   @route("/channels/{channel_id}/versions/{version_id}")
-  @patch(#{implicitOptionality: true})
+  @patch
   @summary("Patch version by ID")
   @operationId("patchVersionById")
   patchVersionById(
