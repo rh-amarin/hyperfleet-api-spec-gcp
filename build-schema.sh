@@ -54,7 +54,7 @@ mkdir -p "$OUTPUT_DIR"
 echo -e "${GREEN}✓ Created output directory: ${OUTPUT_DIR}${NC}"
 echo ""
 
-echo -e "${YELLOW}Step 2: Compiling TypeSpec from gcp/main.tsp...${NC}"
+echo -e "${YELLOW}Step 2: Compiling TypeSpec from main.tsp...${NC}"
 TEMP_OUTPUT_DIR="tsp-output-gcp"
 
 cleanup() {
@@ -62,7 +62,7 @@ cleanup() {
 }
 trap cleanup EXIT
 
-if "$TSP" compile gcp/main.tsp --output-dir "$TEMP_OUTPUT_DIR"; then
+if "$TSP" compile main.tsp --output-dir "$TEMP_OUTPUT_DIR"; then
     if [ -f "${TEMP_OUTPUT_DIR}/schema/openapi.yaml" ]; then
         mv "${TEMP_OUTPUT_DIR}/schema/openapi.yaml" "${OUTPUT_DIR}/openapi.yaml"
         echo ""
