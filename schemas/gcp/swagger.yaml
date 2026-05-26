@@ -685,7 +685,7 @@ paths:
       description: Returns a single cluster by its ID.
       operationId: getClusterById
       summary: Get cluster by ID
-    post:
+    patch:
       consumes:
         - application/json
       produces:
@@ -980,7 +980,7 @@ paths:
       description: Returns specific nodepool
       operationId: getNodePoolById
       summary: Get nodepool by ID
-    post:
+    patch:
       consumes:
         - application/json
       produces:
@@ -1378,7 +1378,7 @@ paths:
       description: Returns a single resource by its ID.
       operationId: getResourceById
       summary: Get resource by ID
-    post:
+    patch:
       consumes:
         - application/json
       produces:
@@ -1418,6 +1418,69 @@ paths:
         references.
       operationId: patchResourceById
       summary: Patch resource by ID
+  '/api/hyperfleet/v1/resources/{resource_id}/statuses':
+    get:
+      produces:
+        - application/json
+        - application/problem+json
+      parameters:
+        - in: path
+          name: resource_id
+          required: true
+          type: string
+        - description: >-
+            Filter results using TSL (Tree Search Language) query syntax.
+
+            Examples: `status.conditions.Reconciled='True'`, `name in
+            ('c1','c2')`, `labels.region='us-east'`
+          in: query
+          name: search
+          required: false
+          type: string
+        - default: 1
+          format: int32
+          in: query
+          name: page
+          required: false
+          type: integer
+        - default: 20
+          format: int32
+          in: query
+          name: pageSize
+          required: false
+          type: integer
+        - default: created_time
+          in: query
+          name: orderBy
+          required: false
+          type: string
+        - enum:
+            - asc
+            - desc
+          in: query
+          name: order
+          required: false
+          type: string
+      responses:
+        '200':
+          description: The request has succeeded.
+          schema:
+            $ref: '#/definitions/AdapterStatusList'
+        '400':
+          description: The server could not understand the request due to invalid syntax.
+        '404':
+          description: The server cannot find the requested resource.
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/Error'
+      security:
+        - BearerAuth: []
+      tags:
+        - Resource statuses
+      description: Returns adapter statuses for a resource.
+      operationId: getResourceStatuses
+      summary: List resource statuses
 definitions:
   AcceleratorSpec:
     properties:
@@ -3184,6 +3247,7 @@ tags:
   - name: Clusters
   - name: Cluster statuses
   - name: NodePool statuses
+  - name: Resource statuses
   - name: NodePools
   - name: Resources
   - name: Channels
