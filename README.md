@@ -1,6 +1,6 @@
-# HyperFleet GCP API Spec
+# HyperFleet Template API Spec
 
-This repository generates the HyperFleet GCP OpenAPI specification from TypeSpec definitions. It extends the [hyperfleet-api-spec](https://github.com/openshift-hyperfleet/hyperfleet-api-spec) core contract with GCP-specific models (cluster spec, channels, versions) and imports the shared models and services from core as the `hyperfleet` npm package.
+This repository generates the HyperFleet Template OpenAPI specification from TypeSpec definitions. It extends the [hyperfleet-api-spec](https://github.com/openshift-hyperfleet/hyperfleet-api-spec) core contract with Template-specific models (cluster spec, channels, versions) and imports the shared models and services from core as the `hyperfleet` npm package.
 
 ## Consuming the API Specifications
 
@@ -9,40 +9,40 @@ This repository generates the HyperFleet GCP OpenAPI specification from TypeSpec
 Download the latest stable OpenAPI specification directly from GitHub Releases:
 
 ```bash
-curl -L -O https://github.com/openshift-hyperfleet/hyperfleet-api-spec-gcp/releases/latest/download/gcp-openapi.yaml
+curl -L -O https://github.com/openshift-hyperfleet/hyperfleet-api-spec-template/releases/latest/download/template-openapi.yaml
 ```
 
 **Use in code generation:**
 
 ```bash
-openapi-generator generate -i https://github.com/openshift-hyperfleet/hyperfleet-api-spec-gcp/releases/latest/download/gcp-openapi.yaml -g go -o ./client
+openapi-generator generate -i https://github.com/openshift-hyperfleet/hyperfleet-api-spec-template/releases/latest/download/template-openapi.yaml -g go -o ./client
 ```
 
 ### Version-Specific Downloads
 
 ```bash
-curl -L -O https://github.com/openshift-hyperfleet/hyperfleet-api-spec-gcp/releases/download/v1.0.17/gcp-openapi.yaml
+curl -L -O https://github.com/openshift-hyperfleet/hyperfleet-api-spec-template/releases/download/v1.0.17/template-openapi.yaml
 ```
 
-**See all releases:** <https://github.com/openshift-hyperfleet/hyperfleet-api-spec-gcp/releases>
+**See all releases:** <https://github.com/openshift-hyperfleet/hyperfleet-api-spec-template/releases>
 
 ## Repository Structure
 
 ```
-hyperfleet-api-spec-gcp/
+hyperfleet-api-spec-template/
 ├── main.tsp                  # Main TypeSpec entry point
 ├── tspconfig.yaml            # TypeSpec compiler configuration
 ├── build-schema.sh           # Build script for OpenAPI generation
-├── models/                   # GCP-specific model definitions
-│   ├── cluster/             # GCPClusterSpec with GCP-specific fields
-│   ├── nodepool/            # GCP nodepool models
+├── models/                   # Template-specific model definitions
+│   ├── cluster/             # TemplateClusterSpec with Template-specific fields
+│   ├── nodepool/            # Template nodepool models
 │   ├── channel/             # ChannelSpec (is_default, enabled_regex)
 │   └── version/             # VersionSpec (raw_version, release_image, etc.)
-├── services/                 # GCP-specific service endpoints
+├── services/                 # Template-specific service endpoints
 │   ├── channels.tsp         # /channels CRUD routes
 │   └── versions.tsp         # /channels/{id}/versions CRUD routes
 └── schemas/                  # Generated OpenAPI output
-    └── gcp/
+    └── template/
         └── openapi.yaml
 ```
 
@@ -77,13 +77,13 @@ npm run build:swagger
 ./build-schema.sh --swagger  # OpenAPI 3.0 + Swagger 2.0
 ```
 
-The script compiles `main.tsp` and outputs `schemas/gcp/openapi.yaml` (and optionally `schemas/gcp/swagger.yaml`).
+The script compiles `main.tsp` and outputs `schemas/template/openapi.yaml` (and optionally `schemas/template/swagger.yaml`).
 
 ## Architecture
 
 - **Simple CRUD only**: No business logic, no event creation
 - **Separation of concerns**: API layer focuses on data persistence; orchestration is handled by external components
-- **Shared contract**: Cluster, nodepool, status, and resource endpoints are defined in the core repo and imported here; only GCP-specific models and services live in this repo
+- **Shared contract**: Cluster, nodepool, status, and resource endpoints are defined in the core repo and imported here; only Template-specific models and services live in this repo
 
 ## Updating the Specification
 
@@ -110,7 +110,7 @@ The script compiles `main.tsp` and outputs `schemas/gcp/openapi.yaml` (and optio
    - OpenAPI 3.0 schema passes `spectral:oas` linting.
    - Version in `main.tsp` is higher than the latest GitHub release tag.
 
-6. **Merge to main.** The release workflow runs automatically: it creates an annotated tag (`vX.Y.Z`), builds the schema, and publishes a GitHub release with `gcp-openapi.yaml` and `gcp-swagger.yaml` attached.
+6. **Merge to main.** The release workflow runs automatically: it creates an annotated tag (`vX.Y.Z`), builds the schema, and publishes a GitHub release with `template-openapi.yaml` and `template-swagger.yaml` attached.
 
 ### Updating the shared core dependency
 

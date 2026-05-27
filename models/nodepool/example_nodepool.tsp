@@ -11,8 +11,8 @@ const exampleNodePool: NodePool = #{
   generation: 1,
   spec: #{
     platform: #{
-      type: "gcp",
-      gcp: #{
+      type: "template",
+      template: #{
         machineType: "n1-standard-4",
         diskSize: 100,
         diskType: "pd-standard",
@@ -96,8 +96,8 @@ const exampleDeletedNodePool: NodePool = #{
   generation: 2,
   spec: #{
     platform: #{
-      type: "gcp",
-      gcp: #{
+      type: "template",
+      template: #{
         machineType: "n1-standard-4",
         diskSize: 100,
         diskType: "pd-standard",

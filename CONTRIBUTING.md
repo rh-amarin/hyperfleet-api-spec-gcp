@@ -1,6 +1,6 @@
-# Contributing to HyperFleet GCP API Spec
+# Contributing to HyperFleet Template API Spec
 
-Thank you for your interest in contributing! This document covers the development workflow for the GCP-specific API specification.
+Thank you for your interest in contributing! This document covers the development workflow for the Template-specific API specification.
 
 ## Development Setup
 
@@ -15,8 +15,8 @@ Thank you for your interest in contributing! This document covers the developmen
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/openshift-hyperfleet/hyperfleet-api-spec-gcp.git
-   cd hyperfleet-api-spec-gcp
+   git clone https://github.com/openshift-hyperfleet/hyperfleet-api-spec-template.git
+   cd hyperfleet-api-spec-template
    ```
 
 2. Install dependencies (includes the TypeSpec compiler and the `hyperfleet` shared package):
@@ -34,19 +34,19 @@ Thank you for your interest in contributing! This document covers the developmen
 ## Repository Structure
 
 ```
-hyperfleet-api-spec-gcp/
+hyperfleet-api-spec-template/
 ├── main.tsp                  # Main TypeSpec entry point
 ├── tspconfig.yaml            # TypeSpec compiler configuration
 ├── build-schema.sh           # Build script
-├── models/                   # GCP-specific models
-│   ├── cluster/             # GCPClusterSpec
-│   ├── nodepool/            # GCP nodepool models
+├── models/                   # Template-specific models
+│   ├── cluster/             # TemplateClusterSpec
+│   ├── nodepool/            # Template nodepool models
 │   ├── channel/             # Channel model
 │   └── version/             # Version model
-├── services/                 # GCP-specific service endpoints
+├── services/                 # Template-specific service endpoints
 │   ├── channels.tsp
 │   └── versions.tsp
-└── schemas/gcp/              # Generated OpenAPI output (committed)
+└── schemas/template/              # Generated OpenAPI output (committed)
     ├── openapi.yaml          # OpenAPI 3.0
     └── swagger.yaml          # OpenAPI 2.0 (Swagger)
 ```
@@ -65,18 +65,18 @@ npm run build:swagger   # OpenAPI 3.0 + Swagger 2.0
 ### Linting
 
 ```bash
-npx spectral lint schemas/gcp/openapi.yaml
+npx spectral lint schemas/template/openapi.yaml
 ```
 
 ### Validating Output
 
 ```bash
-ls -l schemas/gcp/openapi.yaml schemas/gcp/swagger.yaml
+ls -l schemas/template/openapi.yaml schemas/template/swagger.yaml
 ```
 
 ## Common Tasks
 
-### Adding a GCP-specific model field
+### Adding a Template-specific model field
 
 Edit the relevant file in `models/` (e.g., `models/cluster/model.tsp`) and rebuild:
 
@@ -84,7 +84,7 @@ Edit the relevant file in `models/` (e.g., `models/cluster/model.tsp`) and rebui
 npm run build
 ```
 
-### Adding a new GCP-specific service
+### Adding a new Template-specific service
 
 1. Create the service file in `services/`:
 
@@ -127,7 +127,7 @@ Please refer to the architecture repo [commit standard](https://github.com/opens
 **Examples:**
 
 ```
-feat: add channelGroup to ReleaseSpec (GCP-696)
+feat: add channelGroup to ReleaseSpec (Template-696)
 fix: correct required fields in ChannelSpec
 docs: update README with new endpoint examples
 ```

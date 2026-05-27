@@ -4,8 +4,8 @@ import "hyperfleet/shared/models/clusters/model.tsp";
 const exampleClusterPatchRequest: ClusterPatchRequest = #{
   spec: #{
     platform: #{
-      type: "gcp",
-      gcp: #{
+      type: "template",
+      template: #{
         projectID: "project-123",
         region: "us-central1",
         zone: "us-central1-a",

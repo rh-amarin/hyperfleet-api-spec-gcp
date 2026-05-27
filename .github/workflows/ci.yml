@@ -24,7 +24,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build GCP schemas
+      - name: Build Template schemas
         run: ./build-schema.sh
 
       - name: Check schema consistency
@@ -37,7 +37,7 @@ jobs:
 
       - name: Lint OpenAPI schema
         run: |
-          npx spectral lint schemas/gcp/openapi.yaml --format github-actions --fail-severity warn
+          npx spectral lint schemas/template/openapi.yaml --format github-actions --fail-severity warn
 
       - name: Check version bump
         env:
