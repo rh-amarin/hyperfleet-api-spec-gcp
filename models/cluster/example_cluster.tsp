@@ -10,8 +10,8 @@ const exampleCluster: Cluster = #{
   labels: #{ environment: "production", team: "platform" },
   spec: #{
     platform: #{
-      type: "gcp",
-      gcp: #{
+      type: "template",
+      template: #{
         projectID: "project-123",
         region: "us-central1",
         zone: "us-central1-a",
@@ -90,8 +90,8 @@ const exampleDeletedCluster: Cluster = #{
   labels: #{ environment: "production", team: "platform" },
   spec: #{
     platform: #{
-      type: "gcp",
-      gcp: #{
+      type: "template",
+      template: #{
         projectID: "project-123",
         region: "us-central1",
         zone: "us-central1-a",

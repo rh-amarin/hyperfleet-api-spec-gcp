@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: HyperFleet API
-  version: 1.0.18
+  version: 1.0.19
   contact:
     name: HyperFleet Team
     url: https://github.com/openshift-hyperfleet
@@ -544,8 +544,8 @@ paths:
                   team: platform
                 spec:
                   platform:
-                    type: gcp
-                    gcp:
+                    type: template
+                    template:
                       projectID: project-123
                       region: us-central1
                       zone: us-central1-a
@@ -765,8 +765,8 @@ paths:
                 generation: 2
                 spec:
                   platform:
-                    type: gcp
-                    gcp:
+                    type: template
+                    template:
                       machineType: n1-standard-4
                       diskSize: 100
                       diskType: pd-standard
@@ -926,6 +926,8 @@ paths:
                 $ref: '#/components/schemas/Error'
       tags:
         - NodePool statuses
+      security:
+        - BearerAuth: []
   /api/hyperfleet/v1/clusters/{cluster_id}/statuses:
     get:
       operationId: getClusterStatuses
@@ -1720,8 +1722,8 @@ components:
           team: platform
         spec:
           platform:
-            type: gcp
-            gcp:
+            type: template
+            template:
               projectID: project-123
               region: us-central1
               zone: us-central1-a
@@ -1813,8 +1815,8 @@ components:
           team: platform
         spec:
           platform:
-            type: gcp
-            gcp:
+            type: template
+            template:
               projectID: project-123
               region: us-central1
               zone: us-central1-a
@@ -1874,8 +1876,8 @@ components:
       example:
         spec:
           platform:
-            type: gcp
-            gcp:
+            type: template
+            template:
               projectID: project-123
               region: us-central1
               zone: us-central1-a
@@ -1913,13 +1915,13 @@ components:
       type: object
       required:
         - type
-        - gcp
+        - template
       properties:
         type:
           type: string
           enum:
-            - gcp
-        gcp:
+            - template
+        template:
           $ref: '#/components/schemas/ClusterPlatform'
     ClusterSpec:
       type: object
@@ -2104,8 +2106,8 @@ components:
         generation: 1
         spec:
           platform:
-            type: gcp
-            gcp:
+            type: template
+            template:
               machineType: n1-standard-4
               diskSize: 100
               diskType: pd-standard
@@ -2199,8 +2201,8 @@ components:
           pooltype: worker
         spec:
           platform:
-            type: gcp
-            gcp:
+            type: template
+            template:
               machineType: n1-standard-4
               diskSize: 100
               diskType: pd-standard
@@ -2321,8 +2323,8 @@ components:
       example:
         spec:
           platform:
-            type: gcp
-            gcp:
+            type: template
+            template:
               machineType: n1-standard-4
               diskSize: 100
               diskType: pd-standard
@@ -2379,13 +2381,13 @@ components:
       type: object
       required:
         - type
-        - gcp
+        - template
       properties:
         type:
           type: string
           enum:
-            - gcp
-        gcp:
+            - template
+        template:
           $ref: '#/components/schemas/NodePoolPlatform'
     NodePoolSpec:
       type: object

@@ -49,15 +49,15 @@ jobs:
             echo "skip=false" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: Build GCP schemas
+      - name: Build Template schemas
         if: steps.check_tag.outputs.skip == 'false'
         run: ./build-schema.sh
 
       - name: Prepare release assets
         if: steps.check_tag.outputs.skip == 'false'
         run: |
-          cp schemas/gcp/openapi.yaml gcp-openapi.yaml
-          cp schemas/gcp/swagger.yaml gcp-swagger.yaml
+          cp schemas/template/openapi.yaml template-openapi.yaml
+          cp schemas/template/swagger.yaml template-swagger.yaml
 
       - name: Create release tag
         if: steps.check_tag.outputs.skip == 'false'
@@ -78,7 +78,7 @@ jobs:
           draft: false
           prerelease: false
           files: |
-            gcp-openapi.yaml
-            gcp-swagger.yaml
+            template-openapi.yaml
+            template-swagger.yaml
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

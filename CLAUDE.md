@@ -1,13 +1,13 @@
-# HyperFleet GCP API Spec - AI Agent Context
+# HyperFleet Template API Spec - AI Agent Context
 
-This repository generates the HyperFleet GCP OpenAPI specification from TypeSpec definitions. It imports shared models and services from the [hyperfleet-api-spec](https://github.com/openshift-hyperfleet/hyperfleet-api-spec) core repository as the `hyperfleet` npm package, and adds GCP-specific models (cluster spec, channels, versions) and their service endpoints.
+This repository generates the HyperFleet Template OpenAPI specification from TypeSpec definitions. It imports shared models and services from the [hyperfleet-api-spec](https://github.com/openshift-hyperfleet/hyperfleet-api-spec) core repository as the `hyperfleet` npm package, and adds Template-specific models (cluster spec, channels, versions) and their service endpoints.
 
 ## Quick Reference
 
 **Build commands:**
 ```bash
-npm run build            # Generate GCP OpenAPI 3.0
-npm run build:swagger    # Generate GCP OpenAPI 3.0 + Swagger 2.0
+npm run build            # Generate Template OpenAPI 3.0
+npm run build:swagger    # Generate Template OpenAPI 3.0 + Swagger 2.0
 ./build-schema.sh        # Same as npm run build
 ./build-schema.sh --swagger  # Same as npm run build:swagger
 ```
@@ -15,15 +15,15 @@ npm run build:swagger    # Generate GCP OpenAPI 3.0 + Swagger 2.0
 **Validation workflow:**
 ```bash
 npm install                              # Install dependencies (includes hyperfleet package)
-./build-schema.sh                        # Build GCP OpenAPI 3.0
-ls -l schemas/gcp/openapi.yaml           # Confirm output exists
+./build-schema.sh                        # Build Template OpenAPI 3.0
+ls -l schemas/template/openapi.yaml           # Confirm output exists
 ```
 
 ## Key Concepts
 
 ### Dependency on Core Repo
 
-GCP-specific TypeSpec imports shared definitions via the `hyperfleet` npm package:
+Template-specific TypeSpec imports shared definitions via the `hyperfleet` npm package:
 
 ```typescript
 // main.tsp
@@ -50,15 +50,15 @@ To use a local core checkout during development, use `npm link` or a local path:
 | Concern | Location |
 |---------|----------|
 | Cluster/nodepool/status/resource CRUD routes | Core repo (`hyperfleet` package) |
-| `GCPClusterSpec` fields | `models/cluster/model.tsp` |
-| GCP nodepool fields | `models/nodepool/model.tsp` |
+| `TemplateClusterSpec` fields | `models/cluster/model.tsp` |
+| Template nodepool fields | `models/nodepool/model.tsp` |
 | Channels and versions models | `models/channel/`, `models/version/` |
 | Channels and versions service endpoints | `services/channels.tsp`, `services/versions.tsp` |
-| Generated output | `schemas/gcp/openapi.yaml` (committed) |
+| Generated output | `schemas/template/openapi.yaml` (committed) |
 
 ### Public vs Internal APIs
 
-The internal status and force-delete endpoints come from the core shared contract. This repo generates the public GCP API contract only (no internal adapter endpoints).
+The internal status and force-delete endpoints come from the core shared contract. This repo generates the public Template API contract only (no internal adapter endpoints).
 
 ## Code Style
 
@@ -74,7 +74,7 @@ namespace HyperFleet;
 ```
 
 **Model naming:**
-- GCP resources: `GCPClusterSpec`, `ReleaseSpec`, `ChannelSpec`, `VersionSpec`
+- Template resources: `TemplateClusterSpec`, `ReleaseSpec`, `ChannelSpec`, `VersionSpec`
 - Lists: `ChannelList`, `VersionList`
 - Requests: `ChannelCreateRequest`, `ChannelPatchRequest`
 
@@ -94,19 +94,19 @@ services/
 ## Boundaries
 
 **DO NOT:**
-- Modify generated files in `schemas/` or `tsp-output-gcp/` directly
+- Modify generated files in `schemas/` or `tsp-output-template/` directly
 - Add shared/core models here — they belong in the core repo's `shared/` directory
 - Commit `node_modules/` or build artifacts
 
 **DO:**
-- Run `./build-schema.sh` and commit `schemas/gcp/openapi.yaml` with your changes
-- Run `./build-schema.sh --swagger` and commit `schemas/gcp/swagger.yaml` when releasing
+- Run `./build-schema.sh` and commit `schemas/template/openapi.yaml` with your changes
+- Run `./build-schema.sh --swagger` and commit `schemas/template/swagger.yaml` when releasing
 - Keep TypeSpec files focused (one resource per service file)
 - Update `package.json` to pin a new core version when consuming new shared models
 
 ## Common Tasks
 
-### Add a field to GCP cluster spec
+### Add a field to Template cluster spec
 
 ```typescript
 // models/cluster/model.tsp
@@ -118,7 +118,7 @@ model ReleaseSpec {
 
 Rebuild: `npm run build`
 
-### Add a new GCP-specific service endpoint
+### Add a new Template-specific service endpoint
 
 ```typescript
 // services/channels.tsp
@@ -136,7 +136,7 @@ interface Channels {
 
 Rebuild: `npm run build`
 
-### Add a new GCP-specific resource
+### Add a new Template-specific resource
 
 1. Create model:
 ```typescript
@@ -202,24 +202,24 @@ When bumping the version in `main.tsp`, always update `CHANGELOG.md`:
 Before submitting changes:
 
 - [ ] Dependencies installed: `npm install`
-- [ ] GCP schema builds: `./build-schema.sh`
-- [ ] GCP Swagger builds: `./build-schema.sh --swagger`
-- [ ] Schema files generated: `ls schemas/gcp/openapi.yaml schemas/gcp/swagger.yaml`
+- [ ] Template schema builds: `./build-schema.sh`
+- [ ] Template Swagger builds: `./build-schema.sh --swagger`
+- [ ] Schema files generated: `ls schemas/template/openapi.yaml schemas/template/swagger.yaml`
 - [ ] No TypeSpec compilation errors (check output)
-- [ ] Schema passes linting: `spectral lint schemas/gcp/openapi.yaml`
+- [ ] Schema passes linting: `spectral lint schemas/template/openapi.yaml`
 - [ ] Changes committed including schema updates
 - [ ] PR description references related issue
 
 ## Build System Details
 
 **The build-schema.sh script:**
-1. Runs `node_modules/.bin/tsp compile main.tsp --output-dir tsp-output-gcp`
-2. Moves output to `schemas/gcp/openapi.yaml`
-3. (Optional with `--swagger`) Converts to OpenAPI 2.0 via `api-spec-converter` → `schemas/gcp/swagger.yaml`
+1. Runs `node_modules/.bin/tsp compile main.tsp --output-dir tsp-output-template`
+2. Moves output to `schemas/template/openapi.yaml`
+3. (Optional with `--swagger`) Converts to OpenAPI 2.0 via `api-spec-converter` → `schemas/template/swagger.yaml`
 
 **Output locations:**
-- TypeSpec temp: `tsp-output-gcp/schema/openapi.yaml` (auto-deleted)
-- Final: `schemas/gcp/openapi.yaml` and `schemas/gcp/swagger.yaml` (committed)
+- TypeSpec temp: `tsp-output-template/schema/openapi.yaml` (auto-deleted)
+- Final: `schemas/template/openapi.yaml` and `schemas/template/swagger.yaml` (committed)
 
 ## Release Process
 
@@ -230,7 +230,7 @@ On every push to `main`, the release workflow:
 2. Skips if a tag for that version already exists
 3. Builds both schema formats (`openapi.yaml` and `swagger.yaml`)
 4. Creates an annotated Git tag (`vX.Y.Z`)
-5. Publishes a GitHub Release with `gcp-openapi.yaml` and `gcp-swagger.yaml` attached
+5. Publishes a GitHub Release with `template-openapi.yaml` and `template-swagger.yaml` attached
 
 The CI workflow enforces that the version in `main.tsp` is bumped from the latest release tag before a PR can be merged.
 

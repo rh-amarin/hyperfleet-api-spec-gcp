@@ -5,8 +5,8 @@ model NodePoolSpec {
 }
 
 model NodePoolPlatformSpec {
-    type: "gcp";
-    gcp: NodePoolPlatform;
+    type: "template";
+    template: NodePoolPlatform;
 }
 
 model NodePoolPlatform {

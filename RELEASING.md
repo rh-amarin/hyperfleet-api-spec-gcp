@@ -1,6 +1,6 @@
 # Release Process
 
-This document describes the automated release process for the HyperFleet GCP API specification.
+This document describes the automated release process for the HyperFleet Template API specification.
 
 ## Overview
 
@@ -34,8 +34,8 @@ On every push to `main`, the release workflow:
 3. **Builds** both schema formats
 4. **Creates** an annotated Git tag (`vX.Y.Z`)
 5. **Publishes** a GitHub Release with auto-generated release notes and two artifacts:
-   - `gcp-openapi.yaml` (OpenAPI 3.0)
-   - `gcp-swagger.yaml` (OpenAPI 2.0)
+   - `template-openapi.yaml` (OpenAPI 3.0)
+   - `template-swagger.yaml` (OpenAPI 2.0)
 
 ## CI Validation
 
@@ -48,11 +48,11 @@ The CI workflow (`.github/workflows/ci.yml`) runs on every PR and push to `main`
 ## Download URLs
 
 **Latest release (always points to newest):**
-- GCP OpenAPI 3.0: `https://github.com/openshift-hyperfleet/hyperfleet-api-spec-gcp/releases/latest/download/gcp-openapi.yaml`
-- GCP Swagger 2.0: `https://github.com/openshift-hyperfleet/hyperfleet-api-spec-gcp/releases/latest/download/gcp-swagger.yaml`
+- Template OpenAPI 3.0: `https://github.com/openshift-hyperfleet/hyperfleet-api-spec-template/releases/latest/download/template-openapi.yaml`
+- Template Swagger 2.0: `https://github.com/openshift-hyperfleet/hyperfleet-api-spec-template/releases/latest/download/template-swagger.yaml`
 
 **Specific version:**
-- `https://github.com/openshift-hyperfleet/hyperfleet-api-spec-gcp/releases/download/vX.Y.Z/gcp-openapi.yaml`
+- `https://github.com/openshift-hyperfleet/hyperfleet-api-spec-template/releases/download/vX.Y.Z/template-openapi.yaml`
 
 ## Troubleshooting
 

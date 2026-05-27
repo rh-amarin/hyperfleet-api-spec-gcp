@@ -4,8 +4,8 @@ import "hyperfleet/shared/models/nodepools/model.tsp";
 const exampleNodePoolPatchRequest: NodePoolPatchRequest = #{
   spec: #{
     platform: #{
-      type: "gcp",
-      gcp: #{
+      type: "template",
+      template: #{
         machineType: "n1-standard-4",
         diskSize: 100,
         diskType: "pd-standard",

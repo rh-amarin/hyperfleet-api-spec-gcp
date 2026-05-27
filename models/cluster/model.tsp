@@ -7,8 +7,8 @@ model ClusterSpec {
 }
 
 model ClusterPlatformSpec {
-    type: "gcp";
-    gcp: ClusterPlatform;
+    type: "template";
+    template: ClusterPlatform;
 }
 
 model ClusterPlatform {
