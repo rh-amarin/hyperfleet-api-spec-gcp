@@ -17,7 +17,7 @@ info:
     name: Apache 2.0
     url: 'https://www.apache.org/licenses/LICENSE-2.0'
   title: HyperFleet API
-  version: 1.0.18
+  version: 1.0.0
 host: hyperfleet.redhat.com
 basePath: /
 schemes:
@@ -575,13 +575,13 @@ paths:
                   serviceNetwork:
                     - 10.96.0.0/12
                 platform:
-                  gcp:
+                  template:
                     network: network-123
                     projectID: project-123
                     region: us-central1
                     subnet: subnet-123
                     zone: us-central1-a
-                  type: gcp
+                  type: template
                 release:
                   image: >-
                     registry.redhat.io/openshift4/ose-cluster-version-operator:v4.14.0
@@ -874,7 +874,7 @@ paths:
                   targetCPUUtilization: 80
                 nodeCount: 3
                 platform:
-                  gcp:
+                  template:
                     diskSize: 100
                     diskType: pd-standard
                     labels:
@@ -885,7 +885,7 @@ paths:
                     zones:
                       - us-central1-a
                       - us-central1-b
-                  type: gcp
+                  type: template
               status:
                 conditions:
                   - created_time: '2021-01-01T10:00:00Z'
@@ -1083,6 +1083,8 @@ paths:
           description: An unexpected error response.
           schema:
             $ref: '#/definitions/Error'
+      security:
+        - BearerAuth: []
       tags:
         - NodePool statuses
       description: Returns adapter status reports for this nodepool
@@ -1921,13 +1923,13 @@ definitions:
           serviceNetwork:
             - 10.96.0.0/12
         platform:
-          gcp:
+          template:
             network: network-123
             projectID: project-123
             region: us-central1
             subnet: subnet-123
             zone: us-central1-a
-          type: gcp
+          type: template
         release:
           image: 'registry.redhat.io/openshift4/ose-cluster-version-operator:v4.14.0'
           version: 4.14.0
@@ -2056,13 +2058,13 @@ definitions:
           serviceNetwork:
             - 10.96.0.0/12
         platform:
-          gcp:
+          template:
             network: network-123
             projectID: project-123
             region: us-central1
             subnet: subnet-123
             zone: us-central1-a
-          type: gcp
+          type: template
         release:
           image: 'registry.redhat.io/openshift4/ose-cluster-version-operator:v4.14.0'
           version: 4.14.0
@@ -2139,13 +2141,13 @@ definitions:
           serviceNetwork:
             - 10.96.0.0/12
         platform:
-          gcp:
+          template:
             network: network-123
             projectID: project-123
             region: us-central1
             subnet: subnet-123
             zone: us-central1-a
-          type: gcp
+          type: template
         release:
           image: 'registry.redhat.io/openshift4/ose-cluster-version-operator:v4.14.0'
           version: 4.14.0
@@ -2173,15 +2175,15 @@ definitions:
     type: object
   ClusterPlatformSpec:
     properties:
-      gcp:
+      template:
         $ref: '#/definitions/ClusterPlatform'
       type:
         enum:
-          - gcp
+          - template
         type: string
     required:
       - type
-      - gcp
+      - template
     type: object
   ClusterSpec:
     properties:
@@ -2325,7 +2327,7 @@ definitions:
           targetCPUUtilization: 80
         nodeCount: 3
         platform:
-          gcp:
+          template:
             diskSize: 100
             diskType: pd-standard
             labels:
@@ -2336,7 +2338,7 @@ definitions:
             zones:
               - us-central1-a
               - us-central1-b
-          type: gcp
+          type: template
       status:
         conditions:
           - created_time: '2021-01-01T10:00:00Z'
@@ -2462,7 +2464,7 @@ definitions:
           targetCPUUtilization: 80
         nodeCount: 3
         platform:
-          gcp:
+          template:
             diskSize: 100
             diskType: pd-standard
             labels:
@@ -2473,7 +2475,7 @@ definitions:
             zones:
               - us-central1-a
               - us-central1-b
-          type: gcp
+          type: template
     properties:
       href:
         description: Resource URI
@@ -2610,7 +2612,7 @@ definitions:
           targetCPUUtilization: 80
         nodeCount: 3
         platform:
-          gcp:
+          template:
             diskSize: 100
             diskType: pd-standard
             labels:
@@ -2621,7 +2623,7 @@ definitions:
             zones:
               - us-central1-a
               - us-central1-b
-          type: gcp
+          type: template
     minProperties: 1
     properties:
       labels:
@@ -2665,15 +2667,15 @@ definitions:
     type: object
   NodePoolPlatformSpec:
     properties:
-      gcp:
+      template:
         $ref: '#/definitions/NodePoolPlatform'
       type:
         enum:
-          - gcp
+          - template
         type: string
     required:
       - type
-      - gcp
+      - template
     type: object
   NodePoolSpec:
     properties:

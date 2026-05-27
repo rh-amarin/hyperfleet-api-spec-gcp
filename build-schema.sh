@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Build HyperFleet GCP OpenAPI schema (OpenAPI 3.0 + OpenAPI 2.0 Swagger)
+# Build HyperFleet Template OpenAPI schema (OpenAPI 3.0 + OpenAPI 2.0 Swagger)
 # Usage: ./build-schema.sh
 
 set -e
@@ -19,18 +19,18 @@ if [ ! -x "${SCRIPT_DIR}/node_modules/.bin/tsp" ]; then
 fi
 TSP="${SCRIPT_DIR}/node_modules/.bin/tsp"
 
-echo -e "${GREEN}Building HyperFleet GCP API schema${NC}"
+echo -e "${GREEN}Building HyperFleet Template API schema${NC}"
 echo -e "${GREEN}Output formats: OpenAPI 3.0 + OpenAPI 2.0 (Swagger)${NC}"
 echo ""
 
-OUTPUT_DIR="schemas/gcp"
+OUTPUT_DIR="schemas/template"
 echo -e "${YELLOW}Step 1: Preparing output directory...${NC}"
 mkdir -p "$OUTPUT_DIR"
 echo -e "${GREEN}✓ Created output directory: ${OUTPUT_DIR}${NC}"
 echo ""
 
 echo -e "${YELLOW}Step 2: Compiling TypeSpec from main.tsp...${NC}"
-TEMP_OUTPUT_DIR="tsp-output-gcp"
+TEMP_OUTPUT_DIR="tsp-output-template"
 
 cleanup() {
     rm -rf "$TEMP_OUTPUT_DIR"

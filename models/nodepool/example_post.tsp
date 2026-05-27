@@ -6,8 +6,8 @@ const exampleNodePoolCreateRequest: NodePoolCreateRequest = #{
   labels: #{ environment: "production", pooltype: "worker" },
   spec: #{
     platform: #{
-      type: "gcp",
-      gcp: #{
+      type: "template",
+      template: #{
         machineType: "n1-standard-4",
         diskSize: 100,
         diskType: "pd-standard",
